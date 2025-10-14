@@ -7,10 +7,11 @@ body {
     background-repeat: no-repeat;
     font-family: sans-serif;
     color: rgb(240, 240, 240);
+    transition: background-image 0.2s ease-in-out;
 }
 .text-slogan {
     position: absolute;
-    top: 20px;
+    top: 80px;
     left: 20px;
     line-height: 1.2;
 }
@@ -21,6 +22,34 @@ body {
     color: rgb(237, 154, 55);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
+#main-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 20px;
+    z-index: 1000;
+}
+
+#main-nav a {
+    color: #a8dfff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.5vw;
+    padding: 5px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+    transition: background-color 0.3s;
+}
+
+#main-nav a:hover {
+    background-color: rgba(237, 154, 55, 0.2);
+    color: #fff;
+    text-decoration: none;
+}
+
 .bottom-bar {
     position: fixed;
     left: 0;
@@ -48,13 +77,14 @@ a {
 a:hover { text-decoration: underline; }
 
 body {
-    background-image: url('../images/background-landscape.webp'); 
+    background-image: url('../images/background-landscape1.webp'); 
 }
 @media screen and (orientation: portrait) {
-    body {
-        background-image: url('../images/background-portrait.webp');
-    }
     .text-slogan p {
         font-size: 6vw; 
+    }
+    #main-nav a {
+        font-size: 4vw;
+        gap: 10px;
     }
 }

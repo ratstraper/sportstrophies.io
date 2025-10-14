@@ -7,13 +7,70 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    
+    <nav id="main-nav" style="visibility: hidden;">
+        <a href="/athletes" class="nav-link" data-bg="/images/background-landscape1.webp">For athletes</a>
+        <a href="/organizers" class="nav-link" data-bg="/images/background-landscape2.webp">For organizers</a>
+        <a href="/clubs" class="nav-link" data-bg="/images/background-landscape.webp">For clubs and stores</a>
+    </nav>
+
     <div class="text-slogan">
         <p>Live.</p>
         <p>Feel it.</p>
         <p>Own the Moment.</p>
     </div>
     <div class="bottom-bar">
-        <div>v.:0.0.1 &copy; <%= new Date().getFullYear() %> Sports Trophies</div>
-  </div>
+        <div>v.:0.0.1 &copy;
+        <%= new Date().getFullYear() %> Sports Trophies</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('main-nav');
+            const links = document.querySelectorAll('.nav-link');
+            const body = document.body;
+            
+            const imagesToPreload = [
+                '/images/background-landscape1.webp',
+                '/images/background-landscape2.webp',
+                '/images/background-landscape.webp',
+                '/images/background-portrait.webp' 
+            ];
+            
+            let loadedCount = 0;
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === imagesToPreload.length) {
+                        nav.style.visibility = 'visible';
+                    }
+                };
+                img.src = src;
+            });
+
+            links.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    const newBgUrl = link.getAttribute('data-bg');
+                    
+                    body.style.backgroundImage = `url('${newBgUrl}')`;
+                    
+                    body.classList.add('fade-bg'); 
+                    
+                    links.forEach(l => l.classList.remove('active'));
+                    
+                    link.classList.add('active'); 
+                });
+            });
+            
+            if (window.matchMedia("(orientation: landscape)").matches) {
+                body.style.backgroundImage = 'url(\'/images/background-landscape.webp\')';
+                const defaultLink = document.querySelector('[data-bg="/images/background-landscape.webp"]');
+                if (defaultLink) {
+                    defaultLink.classList.add('active');
+                }
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+body {
+    background-image: none;
+    background-color: #040a1a;
+}
+.text-slogan p {
+    color: #00d9ff; 
+}
+#main-nav a {
+    color: #00d9ff;
+}
+#main-nav a:hover {
+    background-color: rgba(0, 217, 255, 0.2);
+    color: #fff;
+}
+
+@media screen and (orientation: portrait) {
+    body {
+        background-image: none;
+        background-color: #040a1a;
+    }
+}
