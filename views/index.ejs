@@ -24,12 +24,12 @@
         <%= new Date().getFullYear() %> Sports Trophies</div>
     </div>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const nav = document.getElementById('main-nav');
             const links = document.querySelectorAll('.nav-link');
             const body = document.body;
-            
+
             const imagesToPreload = [
                 '/images/background-landscape1.webp',
                 '/images/background-landscape2.webp',
@@ -49,23 +49,36 @@
                 img.src = src;
             });
 
+            function changeBackground(link) {
+                const newBgUrl = link.getAttribute('data-bg');
+                body.style.backgroundImage = `url('${newBgUrl}')`;
+                body.classList.add('fade-bg'); 
+                links.forEach(l => l.classList.remove('active'));
+                link.classList.add('active'); 
+            }
+
             links.forEach(link => {
+                
+                // A) for desktops and laptops
                 link.addEventListener('mouseenter', () => {
-                    const newBgUrl = link.getAttribute('data-bg');
-                    
-                    body.style.backgroundImage = `url('${newBgUrl}')`;
-                    
-                    body.classList.add('fade-bg'); 
-                    
-                    links.forEach(l => l.classList.remove('active'));
-                    
-                    link.classList.add('active'); 
+                    if (!('ontouchstart' in window)) {
+                        changeBackground(link);
+                    }
                 });
+
+                // B) for smartphones and tablets
+                link.addEventListener('touchstart', (e) => {
+                    e.preventDefault(); 
+                    changeBackground(link);
+                }, { passive: false });
+                
             });
             
+            let defaultBgUrl = '/images/background-landscape1.webp';
+            
             if (window.matchMedia("(orientation: landscape)").matches) {
-                body.style.backgroundImage = 'url(\'/images/background-landscape1.webp\')';
-                const defaultLink = document.querySelector('[data-bg="/images/background-landscape1.webp"]');
+                body.style.backgroundImage = `url('${defaultBgUrl}')`;
+                const defaultLink = document.querySelector(`[data-bg="${defaultBgUrl}"]`);
                 if (defaultLink) {
                     defaultLink.classList.add('active');
                 }
