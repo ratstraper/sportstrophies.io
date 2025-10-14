@@ -58,19 +58,36 @@
             }
 
             links.forEach(link => {
+                const linkHref = link.getAttribute('href');
                 
-                // A) for desktops and laptops
-                link.addEventListener('mouseenter', () => {
-                    if (!('ontouchstart' in window)) {
+                // A) events for change background
+                const backgroundSwitchHandler = (e) => {
+                    if (link.classList.contains('active')) {
+                        return;
+                    }
+                    if (e.type === 'touchstart') {
+                        e.preventDefault(); 
+                    }
+                    
+                    changeBackground(link);
+                };
+                
+                link.addEventListener('mouseenter', backgroundSwitchHandler);
+                link.addEventListener('touchstart', backgroundSwitchHandler, { passive: false });
+
+
+                // B) ckick for navigation
+                link.addEventListener('click', (e) => {
+                    // Если ссылка уже активна (фон уже сменен), разрешаем стандартное действие (переход)
+                    if (link.classList.contains('active')) {
+                        // Разрешаем переход
+                        return true; 
+                    } else {
+                        // Если это первый клик/тач, предотвращаем переход, но меняем фон
+                        e.preventDefault();
                         changeBackground(link);
                     }
                 });
-
-                // B) for smartphones and tablets
-                link.addEventListener('touchstart', (e) => {
-                    e.preventDefault(); 
-                    changeBackground(link);
-                }, { passive: false });
                 
             });
             
