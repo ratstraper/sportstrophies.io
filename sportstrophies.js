@@ -33,7 +33,7 @@ app.get('/video', (req, res) => {
     });
 });
 
-app.get('/athletes/download/memo', (req, res) => {
+app.get('/athletes/memo', (req, res) => {
     const fileName = 'Pamyatka_Uchastnika_NFT_Medal.pdf';
     const filePath = path.join(__dirname, 'public', 'docs', fileName); 
     res.setHeader('Content-Disposition', 'inline; filename="' + fileName + '"');

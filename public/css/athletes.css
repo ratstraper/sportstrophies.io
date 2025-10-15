@@ -6,7 +6,7 @@
 /* --- 1. Основные переменные и цвета --- */
 :root {
     --color-background: #111111; /* Deep black */
-    --color-foreground: oklch(0.95 0.15 85); ; /* Primary Gold */
+    --color-foreground: oklch(0.95 0.15 85); /* Primary Gold */
     --color-text-white: #f0f0f0; /* White/Light text */
     --color-card-bg: #1f1f1f; /* Slightly lighter black for cards */
     --color-border: #333333; /* Dark border color */
