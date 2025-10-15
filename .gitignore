@@ -1,5 +1,7 @@
 /node_modules
 /logs/*
+/public/videos/*
+.DS_Store
 /package-lock.json
 .env
 artefacts.md

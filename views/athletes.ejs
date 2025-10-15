@@ -6,6 +6,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/athletes.css">
+    <%- include('partials/google-analytics') %>
 </head>
 <body>
     <nav id="main-nav">
@@ -16,7 +17,18 @@
 
     <div class="text-slogan">
         <p><%= title %></p>
-        <h1>This section will feature content for athletes.</h1>
+        <!-- <h1>This section will feature content for athletes.</h1> -->
+        <div class="content-links">
+            <h2>Полезные материалы для участников RedBull 400 Almaty</h2>
+            
+            <a href="/athletes/download/memo" class="info-link" download onclick="gtag('event', 'download', { 'event_category': 'PDF_Memo', 'event_label': 'NFT_Pamyatka_Uchastnika' });">📖 Памятка участника: как получить и хранить NFT-медаль</a>
+
+            <h3>Видео инструкции по установке кошельков:</h3>
+            <a href="/video?file=metamask-web.mp4&title=MetaMask (Web)" class="video-link">🖥️ MetaMask (Web)</a><br>
+            <a href="/video?file=trustwallet-web.mp4&title=Trust Wallet (Web)" class="video-link">🖥️ Trust Wallet (Web)</a><br>
+            <a href="/video?file=zerion-mobile.mp4&title=Zerion (mobile)" class="video-link">📱 Zerion (mobile)</a><br>
+            <a href="/video?file=trustwallet-mobile.mp4&title=Trust Wallet (mobile)" class="video-link">📱 Trust Wallet (mobile)</a><br>
+        </div>
     </div>
     <div class="bottom-bar">
         <div>v.:0.0.1 &copy; <%= new Date().getFullYear() %> Sports Trophies</div>

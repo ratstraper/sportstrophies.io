@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Trophies</title>
     <link rel="stylesheet" href="/css/style.css">
+    <%- include('partials/google-analytics') %>
 </head>
 <body>
     
@@ -78,12 +79,9 @@
 
                 // B) ckick for navigation
                 link.addEventListener('click', (e) => {
-                    // Если ссылка уже активна (фон уже сменен), разрешаем стандартное действие (переход)
                     if (link.classList.contains('active')) {
-                        // Разрешаем переход
                         return true; 
                     } else {
-                        // Если это первый клик/тач, предотвращаем переход, но меняем фон
                         e.preventDefault();
                         changeBackground(link);
                     }

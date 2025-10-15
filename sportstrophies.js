@@ -15,19 +15,36 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 app.get('/', (req, res) => {res.render('index');});
+app.get('/athletes', (req, res) => {res.render('athletes', { title: 'For Athletes' });});
+app.get('/organizers', (req, res) => {res.render('organizers', { title: 'For Organizers' });});
+app.get('/clubs', (req, res) => {res.render('clubs', { title: 'For Clubs and Stores' });});
+app.get('/video', (req, res) => {
+    const rawFile = req.query.file; 
+    const videoFile = rawFile ? path.basename(rawFile) : null;
+    const videoTitle = req.query.title || 'Видео инструкция';
+    
+    if (!videoFile || videoFile.includes('..')) {
+        return res.status(400).send('Ошибка: Недопустимое имя файла.');
+    }
 
-app.get('/athletes', (req, res) => {
-    res.render('athletes', { title: 'For Athletes' });
+    res.render('video', { 
+        videoFile: videoFile, 
+        videoTitle: videoTitle 
+    });
 });
 
-app.get('/organizers', (req, res) => {
-    res.render('organizers', { title: 'For Organizers' });
+app.get('/athletes/download/memo', (req, res) => {
+    const fileName = 'Pamyatka_Uchastnika_NFT_Medal.pdf';
+    const filePath = path.join(__dirname, 'public', 'docs', fileName); 
+    res.setHeader('Content-Disposition', 'inline; filename="' + fileName + '"');
+    res.setHeader('Content-Type', 'application/pdf');
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error('Ошибка при отправке PDF:', err);
+            res.status(404).send('Файл не найден или произошла ошибка сервера.');
+        }
+    });
 });
-
-app.get('/clubs', (req, res) => {
-    res.render('clubs', { title: 'For Clubs and Stores' });
-});
-
 
 app.listen(PORT, () => {
     console.log(`The server is running on http://localhost:${PORT}`);
