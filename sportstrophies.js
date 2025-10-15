@@ -24,7 +24,7 @@ app.get('/video', (req, res) => {
     const videoTitle = req.query.title || 'Видео инструкция';
     
     if (!videoFile || videoFile.includes('..')) {
-        return res.status(400).send('Ошибка: Недопустимое имя файла.');
+        return res.status(400).send('Error: Invalid file name.');
     }
 
     res.render('video', { 
@@ -40,8 +40,8 @@ app.get('/athletes/download/memo', (req, res) => {
     res.setHeader('Content-Type', 'application/pdf');
     res.sendFile(filePath, (err) => {
         if (err) {
-            console.error('Ошибка при отправке PDF:', err);
-            res.status(404).send('Файл не найден или произошла ошибка сервера.');
+            console.error('Error sending PDF:', err);
+            res.status(404).send('File not found or server error.');
         }
     });
 });
