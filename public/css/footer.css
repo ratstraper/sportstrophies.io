@@ -1,0 +1,227 @@
+
+/* ==================================================================
+   Global Footer Styles (Sports Trophies)
+   File: /public/css/footer.css
+   Scope: Site-wide footer across all pages
+   ================================================================== */
+
+:root {
+  /* Theme tokens with sane fallbacks for dark UI */
+  --footer-bg: var(--color-background, #0b0b0b);
+  --footer-border: var(--color-border, #2a2a2a);
+  --footer-text: rgba(255, 255, 255, 0.78);
+  --footer-muted: rgba(255, 255, 255, 0.56);
+  --footer-link: var(--color-foreground, #ffffff);
+  --footer-link-hover: #ffffff;
+  --footer-accent: var(--color-foreground, #ffc400);
+  --footer-input-bg: rgba(255,255,255,0.06);
+  --footer-input-border: rgba(255,255,255,0.14);
+  --footer-radius: 12px;
+}
+
+.site-footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--footer-border);
+  background: linear-gradient(180deg, var(--footer-bg), rgba(255,255,255,0.00) 0%),
+              var(--footer-bg);
+  color: var(--footer-text);
+  line-height: 1.2;
+  font-size: 0.82rem;
+}
+
+.site-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.footer-minimal {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.footer-minimal .slogan {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: var(--footer-accent);
+  margin-bottom: 0.5rem;
+}
+
+.footer-minimal .quick-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.25rem;
+  justify-items: center;
+}
+
+@media (min-width: 640px) {
+  .footer-minimal .quick-columns {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.footer-minimal .col-title {
+  font-weight: 700;
+  color: var(--footer-link);
+  margin-bottom: 0.25rem;
+}
+
+.footer-minimal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-minimal li + li {
+  margin-top: 0.15rem;
+}
+
+/* ================================================================
+   4-column Footer
+   ================================================================ */
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.footer-col h4 {
+  margin: 0 0 0.5rem;
+  color: var(--footer-link);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col li + li {
+  margin-top: 0.35rem;
+}
+
+.footer-col a {
+  color: var(--footer-text);
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: var(--footer-link-hover);
+  text-decoration: underline;
+}
+
+/* ================================================================
+   Subscribe form
+   ================================================================ */
+.subscribe {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .subscribe {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}
+
+.subscribe label {
+  display: none;
+}
+
+.subscribe input[type="email"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--footer-radius);
+  border: 1px solid var(--footer-input-border);
+  background: var(--footer-input-bg);
+  color: #fff;
+  outline: none;
+}
+
+.subscribe input[type="email"]::placeholder {
+  color: var(--footer-muted);
+}
+
+.subscribe button {
+  padding: 0.8rem 1rem;
+  border-radius: var(--footer-radius);
+  border: 1px solid var(--footer-input-border);
+  background: var(--footer-accent);
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.subscribe button:hover {
+  filter: brightness(0.96);
+}
+
+/* ================================================================
+   Bottom line
+   ================================================================ */
+.footer-bottom {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--footer-border);
+  font-size: 0.92rem;
+  color: var(--footer-muted);
+  display: grid;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+}
+
+.footer-meta a {
+  color: var(--footer-link);
+  text-decoration: none;
+}
+
+.footer-meta a:hover {
+  text-decoration: underline;
+}
+
+.footer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-content: flex-start;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #2ecc71; /* green by default */
+  box-shadow: 0 0 0 2px rgba(46,204,113,0.2);
+}
+
+/* Utility: container if base styles don't define it */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

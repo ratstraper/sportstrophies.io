@@ -1,3 +1,16 @@
+/* --- 1. Основные переменные и цвета --- */
+:root {
+    --color-background: #111111; /* Deep black */
+    --color-foreground: #ff0000; /* Primary Gold */
+    --color-text-white: #f0f0f0; /* White/Light text */
+    --color-card-bg: #1f1f1f; /* Slightly lighter black for cards */
+    --color-border: #333333; /* Dark border color */
+    --color-accent-bg: rgba(255, 196, 0, 0.1); /* Gold tint for containers */
+    --color-button-text: #111111; /* Black text on gold button */
+    --spacing-unit: 1rem;
+    --radius: 0.5rem;
+}
+
 body {
     background-image: none;
     background-color: #1a0505;
@@ -5,13 +18,50 @@ body {
 .text-slogan p {
     color: #ff0000; 
 }
+/* --- 2. Стили секций и контейнеров --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    padding: 4rem 0;
+    border-color: var(--color-border);
+    border-style: solid;
+    border-width: 0;
+}
+
+
+#main-nav {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(17, 17, 17, 0.95);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(4px);
+}
 #main-nav a {
-    color: #ff0000;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
 }
 #main-nav a:hover {
-    background-color: rgba(255, 0, 0, 0.2);
+    color: var(--color-foreground);
+    background-color: var(--color-accent-bg);
+    border-radius: 0.25rem;
+}
+
+#main-nav a:hover {
     color: #fff;
 }
+
 
 @media screen and (orientation: portrait) {
     body {

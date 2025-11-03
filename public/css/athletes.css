@@ -32,19 +32,6 @@ body {
     display: none !important;
 }
 
-/* --- 2. Стили секций и контейнеров --- */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-section {
-    padding: 4rem 0;
-    border-color: var(--color-border);
-    border-style: solid;
-    border-width: 0;
-}
 
 .border-top { border-top-width: 1px; }
 .border-bottom { border-bottom-width: 1px; }
@@ -332,18 +319,8 @@ section {
 }
 
 
-/* --- 10. Footer --- */
-.main-footer {
-    border-top-width: 1px;
-    padding: 2rem 0;
-    text-align: center;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
 /* Навигация (переопределяем стили из style.css для фиксированной позиции) */
 #main-nav {
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;

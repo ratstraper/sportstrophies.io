@@ -22,6 +22,7 @@ body {
     color: rgb(237, 154, 55);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
+
 #main-nav {
     position: absolute;
     top: 20px;
@@ -84,6 +85,27 @@ a:hover { text-decoration: underline; }
 body {
     background-image: url('../images/background-landscape1.webp'); 
 }
+/* --- 2. Стили секций и контейнеров --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    padding: 4rem 0;
+    border-color: var(--color-border);
+    border-style: solid;
+    border-width: 0;
+}
+
+.isDisabled {
+  color: currentColor;
+  pointer-events: none;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
 @media screen and (orientation: portrait) {
     .text-slogan p {
         font-size: 6vw; 

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Trophy NFT Medal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/footer.css">
+    <style>
+        :root{
+            --color-background: #181818;
+            --color-panel:#1c2028;
+            --color-border:#2a2f3a;
+            --color-container-bg: #222327
+            --bg-background: #232428;
+            --text: #858585;
+            --quadro: 33vw;
+            --thumb-size: 80px;
+        }  
+        body {
+            background: var(--color-background);
+            color: #f5f5f5;
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            place-items: center;
+        }
+        .nft-container {
+            max-width: 950px;
+            margin: 20px;
+            padding: 20px;
+            background: #222327;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: row;
+            gap: 28px;
+        }
+        .left {
+            width: calc(var(--quadro));
+        }
+        .right {
+            flex: 1;
+            width: calc(100% - var(--quadro));
+        }
+        .flip-container {
+            /* place-items: center; */
+        }
+        .flip-card {
+            background-color: transparent;
+            width: var(--quadro); /* 390px; */
+            height: var(--quadro); /* 390px; */
+            perspective: 1200px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(.23,1,.32,1);
+            transform-style: preserve-3d;
+        }
+        .flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            background: var(--color-background);
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flip-card-front img {
+            width: 90%;
+            height: auto;
+            border-radius: 14px;
+            object-fit: contain;
+        }
+        .flip-card-back video {
+            width: 90%;
+            height: auto;
+            border-radius: 14px;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        .side-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+        .side-thumb {
+            width: var(--thumb-size);
+            height: var(--thumb-size);
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: border-color .2s;
+            object-fit: cover;
+        }
+        .side-thumb.selected {
+            border-color: #0596f2;
+        }
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .share-btn {
+            background: var(--color-border);
+            border: none;
+            color: #eee;
+            border-radius: 10px;
+            font-size: 17px;
+            padding: 9px 15px;
+            cursor: pointer;
+            transition: background 0.23s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .share-btn:hover {
+            background: #3467d6;
+        }
+        .right h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+        .attributes-table {
+            width: 100%;
+            border-spacing: 0 8px;
+            margin-bottom: 16px;
+        }
+        .attributes-table th, .attributes-table td {
+            text-align: left;
+            font-size: 17px;
+            padding: 7px 10px;
+        }
+        .attributes-table th {
+            color: #858585;
+            font-weight: 400;
+            width: 150px;
+        }
+        .description {
+            border-radius: 10px;
+            padding: 14px 0px;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        .section{
+          background:var(--color-panel); border:1px solid var(--color-border); border-radius:16px; padding:16px;
+        }
+        .kv{
+            gap:10px 14px; 
+            height: calc(var(--quadro) - calc(16px * 2) );
+            overflow:auto; 
+            padding-right:4px;
+            background: var(--color-panel);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 16px;
+            overflow: auto;
+        }
+
+        /* Firefox */
+        /* * {
+        scrollbar-width: thin; 
+        scrollbar-color: #eee #1c2028;
+        } */
+
+        /* Chrome, Edge and Safari */
+        .kv::-webkit-scrollbar { 
+          width: 5px;
+        }
+        .kv::-webkit-scrollbar-track {
+          margin-top: 16px;
+          margin-bottom: 10px;
+          border-radius: 8px;
+          background-color: var(--color-panel);
+          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        .kv::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          background-color: #858585;
+        }
+
+        @media (pointer: fine) {
+            .scroll-container {
+
+            }
+        }
+        @media (max-width: 900px) {
+            .nft-container {
+                flex-direction: column;
+                align-items: center;
+                width: calc(100vw - 20px);
+            }
+            .right {
+                flex: 1;
+                width: calc(100%);
+            }
+            .flip-container {
+                place-items: center;
+            }
+            .flip-card {
+                width: 96vw;
+                max-width: 370px;
+                height: 370px;
+            }
+            .side-selector {
+                justify-content: center;
+            }
+            .kv{
+                height: auto;
+                max-height:none; 
+            }
+        }
+        .isDisabled {
+            color: currentColor;
+            pointer-events: none;
+            opacity: 0.5;
+            text-decoration: none;
+        }
+    </style>
+    <!-- Google Analytics Gtag -->
+    <%- include('partials/google-analytics') %>
+</head>
+<body>
+    <div class="nft-container">
+        <div class="left">
+            <div class="flip-container">
+                <div id="flip-card" class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img id="medal-image" alt="NFT Medal Image" src="https://sportstrophies.io/images/contract-image.png">
+                        </div>
+                        <div class="flip-card-back">
+                            <video id="medal-video" controls="" muted="" playsinline="" loop="" src="https://ipfs.io/ipfs/bafybeibdelvinx6c62lkpnpybd357cc7s7qw7lggvrunpcwue2rr24r75q?filename=medal.mp4"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side-selector">
+                <img class="side-thumb selected" id="side-img" src="https://ipfs.io/ipfs/bafybeibrakbpipwjj4l3czyhrhadjdchnwggqjedsvyi3va62tt5kmt7eu" alt="Image Side">
+                <video class="side-thumb" id="side-vid" muted="" muted alt="Video Side"></video>
+            </div>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="share('twitter')">
+                    <svg width="14" height="14" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="white"/></svg>
+                </button>
+                <!-- <button class="share-btn" onclick="share('instagram')"></button> -->
+                <button class="share-btn" onclick="share('telegram')">
+                    <svg width="14" height="14" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs><linearGradient x1="50%" y1="0%" x2="50%" y2="99.2583404%" id="linearGradient-1"><stop stop-color="#2AABEE" offset="0%"></stop><stop stop-color="#229ED9" offset="100%"></stop></linearGradient></defs>
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><circle id="Oval" fill="url(#linearGradient-1)" cx="500" cy="500" r="500"></circle><path d="M226.328419,494.722069 C372.088573,431.216685 469.284839,389.350049 517.917216,369.122161 C656.772535,311.36743 685.625481,301.334815 704.431427,301.003532 C708.567621,300.93067 717.815839,301.955743 723.806446,306.816707 C728.864797,310.92121 730.256552,316.46581 730.922551,320.357329 C731.588551,324.248848 732.417879,333.113828 731.758626,340.040666 C724.234007,419.102486 691.675104,610.964674 675.110982,699.515267 C668.10208,736.984342 654.301336,749.547532 640.940618,750.777006 C611.904684,753.448938 589.856115,731.588035 561.733393,713.153237 C517.726886,684.306416 492.866009,666.349181 450.150074,638.200013 C400.78442,605.66878 432.786119,587.789048 460.919462,558.568563 C468.282091,550.921423 596.21508,434.556479 598.691227,424.000355 C599.00091,422.680135 599.288312,417.758981 596.36474,415.160431 C593.441168,412.561881 589.126229,413.450484 586.012448,414.157198 C581.598758,415.158943 511.297793,461.625274 375.109553,553.556189 C355.154858,567.258623 337.080515,573.934908 320.886524,573.585046 C303.033948,573.199351 268.692754,563.490928 243.163606,555.192408 C211.851067,545.013936 186.964484,539.632504 189.131547,522.346309 C190.260287,513.342589 202.659244,504.134509 226.328419,494.722069 Z" id="Path-3" fill="#FFFFFF"></path></g>
+                    </svg>
+                </button>
+                <button class="share-btn" onclick="share('copy')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626" stroke="#eeeeee" stroke-width="1.5" stroke-linecap="round"/>
+                        <path opacity="0.5" d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373" stroke="#eeeeee" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="right">
+            
+            
+            <div id="params" class="kv" aria-live="polite">
+                <h2 id="title"></h2>
+            </div>
+            <div class="description" id="description"></div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+    <script>
+        const nft = <%- JSON.stringify(json) %>;
+
+        const title = document.getElementById('title');
+        const paramsEl = document.getElementById('params');
+        // Flip animation
+        const flipCard = document.getElementById('flip-card');
+        const thumbImg = document.getElementById('side-img');
+        const thumbVid = document.getElementById('side-vid');
+        const mainImg = document.getElementById('medal-image');
+        const mainVid = document.getElementById('medal-video');
+        
+
+        thumbImg.onclick = () => {
+            flipCard.classList.remove('flipped');
+            thumbImg.classList.add('selected');
+            thumbVid.classList.remove('selected');
+            mainVid.pause();
+        };
+        thumbVid.onclick = () => {
+            flipCard.classList.add('flipped');
+            thumbVid.classList.add('selected');
+            thumbImg.classList.remove('selected');
+            mainVid.play().catch(()=>{});
+        };
+
+        function escapeHtml(str){
+            return str.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+        }
+        // Sharing logic (customize with real URL if needed)
+        function share(network) {
+            // medal_url can be dynamic
+            const medal_url = window.location.href;
+            if(network === 'twitter') {
+                window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(medal_url)}`, '_blank');
+            } else if(network === 'instagram') {
+                alert('Instagram шэринга не поддерживается ссылками. Скопируйте ссылку вручную.');
+            } else if(network === 'telegram') {
+                window.open(`https://t.me/share/url?url=${encodeURIComponent(medal_url)}`, '_blank');
+            } else if(network === 'copy') {
+                navigator.clipboard.writeText(medal_url);
+                alert('Ссылка скопирована!');
+            }
+        }
+        function renderFromData(data){
+            // titleEl.textContent = data.name || 'NFT Medal';
+            title.textContent = data.name;
+            // Description
+            const descEl  = document.getElementById('description');
+            descEl.innerHTML = (data.description || '').replace(/\n/g,'<br>');
+
+            // Params (attributes -> key:value)
+            var table = document.createElement('table');
+            table.className = "attributes-table";
+            var tbody = document.createElement('tbody');
+            tbody.id = "tbody";
+            (data.attributes || []).forEach(att=>{
+                var key = (att.trait_type || '').trim();
+                var val = String(att.value ?? '').trim();
+                if(!key) {
+                    key = String(Object.keys(att)[0]);
+                    val = String(Object.values(att)[0]);
+                }
+                if(!key) return;
+                const row = document.createElement('tr');
+                row.innerHTML = `<th>${escapeHtml(key)}</th><td>${escapeHtml(val)}</td>`;
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            paramsEl.appendChild(table);
+
+            const vidSrc = data.animation_url.replace("ipfs://", "https://ipfs.io/ipfs/") || '';
+            const thumbVideoVid = thumbVid;
+            thumbVideoVid.src = vidSrc;
+            mainVid.src = vidSrc;
+
+            const imgSrc = data.image || "https://sportstrophies.io/images/contract-image.png";
+            thumbImg.src = imgSrc;
+            mainImg.src = imgSrc;
+        }
+        renderFromData(nft);
+    </script>
+</body>
+</html>

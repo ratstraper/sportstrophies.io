@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/css/style.css"> 
     <!-- Подключаем CSS для макета Athletes -->
     <link rel="stylesheet" href="/css/athletes.css"> 
-    
+    <link rel="stylesheet" href="/css/footer.css">
+
     <!-- Google Analytics Gtag -->
     <%- include('partials/google-analytics') %>
     
@@ -35,7 +36,7 @@
                     <span class="text-sm font-medium">Цифровые достижения для спортсменов</span>
                 </div>
                 <h1 class="hero-title">
-                    NFT-медали для спортсменов
+                    Создавай свою историю побед
                 </h1>
                 <p class="hero-subtitle">
                     Ваши спортивные достижения теперь навсегда в блокчейне. Получите уникальную цифровую медаль, которая
@@ -262,26 +263,10 @@
                     <p style="margin-bottom: 2rem;">
                         Участвуйте в соревнованиях, достигайте результатов и получайте уникальные цифровые награды
                     </p>
-                    <div class="cta-buttons">
-                        <a href="#" class="btn btn-primary">
-                            Зарегистрироваться на RedBull 400 в Алматы
-                        </a>
-                        <!-- <a href="#" class="btn btn-outline">
-                            Узнать больше
-                        </a> -->
-                    </div>
                 </div>
             </div>
         </section>
-
     </main>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; <%= new Date().getFullYear() %> Sports Trophies</p>
-        </div>
-    </footer>
-    
+    <%- include('partials/footer') %>
 </body>
 </html>

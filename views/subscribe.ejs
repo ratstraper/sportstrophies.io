@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Подписка на новости</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 40px; }
+    form { max-width: 420px; display: grid; gap: 12px; }
+    input[type="email"] { padding: 10px; font-size: 16px; width: 100%; box-sizing: border-box; }
+    button { padding: 10px 14px; font-size: 16px; cursor: pointer; }
+    .error { color: #b00020; }
+    .hp { position: absolute; left: -5000px; top: -5000px; } /* honeypot */
+  </style>
+</head>
+<body>
+  <h1>Подписка на новости</h1>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form action="/subscribe" method="post" novalidate>
+    <label for="email">Email</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      inputmode="email"
+      autocomplete="email"
+      placeholder="you@example.com"
+      value="<%- email %>"
+      required
+    />
+
+    <!-- Honeypot -->
+    <div class="hp" aria-hidden="true">
+      <label for="website">Leave blank</label>
+      <input id="website" type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button type="submit">Подписаться</button>
+  </form>
+</body>
+</html>

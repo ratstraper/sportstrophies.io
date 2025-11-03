@@ -1,10 +1,16 @@
 const express = require('express');
 const path = require('path');
+const fs = require('node:fs');
 const app = express();
 const PORT = 3001;
 
+const registerNftRoute = require("./routes/nft");
+const createSubscribeRouter = require("./routes/subscribe.js");
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.urlencoded({ extended: false }));
 
 const oneDay = 60 * 60 * 24;
 const oneYear = oneDay; // * 365;
@@ -12,6 +18,12 @@ const oneYear = oneDay; // * 365;
 app.use(express.static(path.join(__dirname, 'public'), {
     maxAge: oneYear * 1000, // Set maximum cache time (in milliseconds)
     // Cache-Control header will be set to: public, max-age=31536000
+}));
+
+registerNftRoute(app);
+app.use("/subscribe", createSubscribeRouter({
+  csvPath: path.join(__dirname, "data", "subscribers.csv"), // опционально
+  // pgUrl: process.env.PG_URL,                               // опционально
 }));
 
 app.get('/', (req, res) => {res.render('index');});
@@ -45,6 +57,7 @@ app.get('/athletes/memo', (req, res) => {
         }
     });
 });
+
 
 app.listen(PORT, () => {
     console.log(`The server is running on http://localhost:${PORT}`);

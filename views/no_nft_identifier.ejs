@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>NFT не найден</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root{
+            --color-background: #181818;
+            --color-panel:#1c2028;
+            --color-border:#2a2f3a;
+            --color-container-bg: #222327;
+        }  
+        body {
+            background: var(--color-background);
+            color: #f5f5f5;
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .nft-container {
+            max-width: 950px;
+            margin: 20px;
+            padding: 30px;
+            background: var(--color-container-bg);
+            border-radius: 18px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        h2 {
+            font-size: 26px;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 17px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+        form {
+            margin-top: 24px;
+        }
+        input[type="number"] {
+            width: 180px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            background: var(--color-panel);
+            color: #fff;
+            font-size: 17px;
+            text-align: center;
+            outline: none;
+        }
+        input[type="number"]:focus {
+            border-color: #0596f2;
+        }
+        button {
+            margin-left: 10px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            background: #3467d6;
+            color: #fff;
+            font-size: 17px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #4c7ff3;
+        }
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 15px;
+            color: #999;
+            text-decoration: none;
+        }
+        .back:hover {
+            color: #ddd;
+        }
+    </style>
+    <!-- Google Analytics Gtag -->
+    <%- include('partials/google-analytics') %>
+</head>
+<body>
+    <div class="nft-container">
+        <% if (typeof token !== 'undefined' && token) { %>
+            <h2>⛔ NFT №<%= token %> не найден</h2>
+            <p>Такого NFT токена пока нет или он ещё не создан.<br>
+            Попробуйте ввести другой номер, чтобы найти свою медаль.</p>
+        <% } else { %>
+            <h2>Введите номер NFT токена</h2>
+            <p>Чтобы отобразить цифровую медаль, введите её номер ниже.</p>
+        <% } %>
+
+        <form action="/nft" method="get" onsubmit="return goToNft(event)">
+            <input type="number" id="tokenId" name="id" placeholder="Напр. 60000000001" required>
+            <button type="submit">Показать NFT</button>
+        </form>
+
+        <a href="javascript:history.back()" class="back">← Вернуться на главную</a>
+    </div>
+    <script>
+        function goToNft(event){
+            event.preventDefault();
+            const id = document.getElementById('tokenId').value.trim();
+            if(!id) return false;
+            window.location.href = `/nft/${id}`;
+            return false;
+        }
+    </script>
+</body>
+</html>
