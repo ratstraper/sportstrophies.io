@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page not found</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            color: #fff;
+            font-family: 'Fira Mono', monospace;
+            background-image: url('/images/404.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.45);  
+            z-index: 1; 
+        }
+        .glitch {
+            position: relative;
+            z-index: 2;  
+            font-size: 96px;
+            letter-spacing: -7px;
+            animation: glitch 1s linear infinite;
+            font-weight: 500;
+        }
+
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+
+        .glitch:before,
+        .glitch:after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+        }
+
+        .glitch:before {
+            animation: glitchTop 1s linear infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+
+        @keyframes glitchTop {
+            2%, 64% { transform: translate(2px, -2px); }
+            4%, 60% { transform: translate(-2px, 2px); }
+            62% { transform: translate(13px, -1px) skew(-13deg); }
+        }
+
+        .glitch:after {
+            animation: glitchBotom 1.5s linear infinite;
+            clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitchBotom {
+            2%, 64% { transform: translate(-2px, 0); }
+            4%, 60% { transform: translate(-2px, 0); }
+            62% { transform: translate(-22px, 5px) skew(21deg); }
+        }
+
+        .info-text {
+            font-size: 24px;
+            letter-spacing: normal;
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .home-link {
+            font-size: 18px;
+            letter-spacing: normal;
+            color: #00bfff;
+            text-decoration: none;
+            margin-top: 30px;
+            border: 1px solid #00bfff;
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .home-link:hover {
+            background: #00bfff;
+            color: #131313;
+            box-shadow: 0 0 15px #00bfff;
+        }
+
+        .message {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .25em;
+        }
+        .url {
+            background: rgba(255,255,255,0.1);
+            padding: .35em .75em;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+            margin-left: .25em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glitch" title="404">404</div>
+
+    <div class="info-text">    
+        <div class="message">
+            <div class="url">Page not found: <%= url %></div>
+        </div>
+        <div class="message">
+            <a class="home-link" href="/">Back to home</a>
+        </div>
+    </div>
+</body>
+</html>

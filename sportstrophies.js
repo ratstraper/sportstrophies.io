@@ -58,6 +58,9 @@ app.get('/athletes/memo', (req, res) => {
     });
 });
 
+app.use((req, res) => {
+  res.status(404).render('404', { url: req.originalUrl });
+});
 
 app.listen(PORT, () => {
     console.log(`The server is running on http://localhost:${PORT}`);
